@@ -1,14 +1,18 @@
-function SearchService(filterElementSelector) {
+function FilterService(element) {
     var activeClass = "active";
+    //TODO: use constants for types etc.
+    //TODO: get type, name, value based on the type of the element
+    //TODO: add listeners etc
+    return {};
+}
+
+function SearchService(filterElementSelector) {
+    var filters = [];
     var elements = $(filterElementSelector);
-    elements.on("keyup", function (e) {
-        element = $(this);
-        if(element.val() === "") {
-            element.removeClass(activeClass);
-            state.resetFilter(element);
-        }
-        console.log("changed");
+    $.each(elements, function (item) {
+        filters.push(FilterService(item));
     });
+
     var state = {
         filters: [],
         addFilter: function (filter) {
@@ -34,6 +38,3 @@ function SearchService(filterElementSelector) {
     }
 }
 
-function FilterService(filterElementSelector) {
-
-}
